@@ -6,5 +6,6 @@ for (let i = 0; i < 100; i++) {
     console.error(err)
     return
   })
+  // たまたま順番通りになることもある
   console.log(text)
 }
