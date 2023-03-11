@@ -18,7 +18,11 @@
       const urlStr = url.searchParams.get("url")
       if (urlStr) {
         const linkUrl = new URL(urlStr, url.origin)
-        document.querySelector("#link").href = linkUrl
+        if (linkUrl.protocol === "http:" || linkUrl.protocol === "https:") {
+          document.querySelector("#link").href = linkUrl
+        } else {
+          console.warn("Invalid protocol: " + linkUrl.protocol)
+        }
       }
     </script>
   </body>
