@@ -14,6 +14,12 @@
       if (message) {
         document.querySelector("#result").textContent = message
       }
+
+      const urlStr = url.searchParams.get("url")
+      if (urlStr) {
+        const linkUrl = new URL(urlStr, url.origin)
+        document.querySelector("#link").href = linkUrl
+      }
     </script>
   </body>
 </html>
