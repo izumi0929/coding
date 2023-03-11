@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 router.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Origin", "http://localhost:3002")
   if (req.method === "OPTIONS") {
     res.header("Access-Control-Allow-Headers", "X-Token")
   }
