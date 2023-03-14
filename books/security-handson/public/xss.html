@@ -12,7 +12,8 @@
       const url = new URL(window.location.href)
       const message = url.searchParams.get("message")
       if (message) {
-        document.querySelector("#result").textContent = message
+        const sanitizedMessage = DOMPurify.sanitize(message)
+        document.querySelector("#result").textContent = sanitizedMessage
       }
 
       const urlStr = url.searchParams.get("url")
