@@ -5,7 +5,24 @@
   </head>
   <body>
     <script nonce="<%= nonce %>">
-      alert("Hello, Content Security Policy!")
+      if (window.trustedTypes && trustedTypes.createPolicy) {
+        const policy = trustedTypes.createPolicy("script-url", {
+          createScriptURL: (str) => {
+            const url = new URL(str, location.origin)
+            if (url.origin !== location.origin) {
+              throw new Error("Cross Origin is not allowed")
+            }
+            return url // same origin is allowed
+          }
+        })
+        const script = document.createElement("script")
+        // 作成したポリシー関数によって検査されて
+        // TrustedScriptURLへ変換された値は代入可能になる
+        script.src = policy.createScriptURL(
+          "http://site.example:3000/csp-test.js"
+        )
+        document.body.appendChild(script)
+      }
     </script>
   </body>
 </html>
