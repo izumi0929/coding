@@ -17,5 +17,16 @@
         <button type="submit">Send</button>
       </div>
     </form>
+    <script>
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("csrf_token"))
+        .split("=")[1]
+      const el = document.createElement("input")
+      el.type = "hidden"
+      el.name = "csrf_token"
+      el.value = token
+      document.getElementById("remit").appendChild(el)
+    </script>
   </body>
 </html>
